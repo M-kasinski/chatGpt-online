@@ -3,9 +3,9 @@
 
 A browser extension to display ChatGPT response alongside Qwant (and other search engines) results
 
-<!-- [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-for-google/jgjaeacdkonaoafenlfkkkmbaopkbilf)
+[Install from Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-for-qwant/fmackbdncigkggigfkmiikcpobkeijaf)
 
-[Install from Mozilla Add-on Store](https://addons.mozilla.org/addon/chatgpt-for-google/) -->
+[Install from Mozilla Add-on Store](https://addons.mozilla.org/firefox/addon/chatgpt-for-qwant/)
 
 ## Screenshot
 
