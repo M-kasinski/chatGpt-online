@@ -9,7 +9,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "prettier"
+    "prettier",
+    "preact"
   ],
   "overrides": [],
   "parserOptions": {
@@ -17,7 +18,8 @@
     "sourceType": "module"
   },
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-explicit-any": "warn"
   },
   "ignorePatterns": ["build/**"]
 }

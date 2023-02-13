@@ -14,6 +14,7 @@ import logo from '../logo.png'
 import { detectSystemColorScheme, getExtensionVersion } from '../utils'
 import ProviderSelect from './ProviderSelect'
 
+// eslint-disable-next-line no-unused-vars
 function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => void }) {
   const [triggerMode, setTriggerMode] = useState<TriggerMode>(TriggerMode.Always)
   const [language, setLanguage] = useState<Language>(Language.Auto)
@@ -56,19 +57,19 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
     <div className="container mx-auto">
       <nav className="flex flex-row justify-between items-center mt-5 px-2">
         <div className="flex flex-row items-center gap-2">
-          <img src={logo} className="w-10 h-10 rounded-lg" />
+          <img src={logo} alt={'logo'} className="w-10 h-10 rounded-lg" />
           <span className="font-semibold">ChatGPT for Qwant (v{getExtensionVersion()})</span>
         </div>
         <div className="flex flex-row gap-3">
           <a
-            href="https://github.com/M-kasinski/chat-gpt-qwant-extension"
+            href="https://github.com/M-kasinski/chat-gpt-qwant-extension/issues"
             target="_blank"
             rel="noreferrer"
           >
             Feedback
           </a>
           <a
-            href="https://github.com/wong2/chat-gpt-google-extension"
+            href="https://github.com/M-kasinski/chat-gpt-qwant-extension"
             target="_blank"
             rel="noreferrer"
           >
