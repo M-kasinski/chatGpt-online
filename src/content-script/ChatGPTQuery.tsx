@@ -4,15 +4,19 @@ import { memo, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import Browser from 'webextension-polyfill'
+import { Connect } from '../config'
 import { Answer } from '../messaging'
 import ChatGPTFeedback from './ChatGPTFeedback'
-import { isBraveBrowser, shouldShowRatingTip } from './utils.js'
+import { template } from './promptWebResponseGpt'
+import { isBraveBrowser } from './utils.js'
 
 export type QueryStatus = 'success' | 'error' | undefined
 
 interface Props {
   question: string
+  // eslint-disable-next-line no-unused-vars
   onStatusChange?: (status: QueryStatus) => void
+  webResults: string
 }
 
 function ChatGPTQuery(props: Props) {
@@ -20,7 +24,7 @@ function ChatGPTQuery(props: Props) {
   const [error, setError] = useState('')
   const [retry, setRetry] = useState(0)
   const [done, setDone] = useState(false)
-  const [showTip, setShowTip] = useState(false)
+  /*const [showTip, setShowTip] = useState(false)*/
   const [status, setStatus] = useState<QueryStatus>()
 
   useEffect(() => {
@@ -41,7 +45,18 @@ function ChatGPTQuery(props: Props) {
       }
     }
     port.onMessage.addListener(listener)
-    port.postMessage({ question: props.question })
+
+    port.postMessage(
+      props.webResults !== Connect.Offline
+        ? {
+            question: template({
+              query: props.question,
+              current_date: getCurrentDate(),
+              web_results: props.webResults,
+            }),
+          }
+        : { question: props.question },
+    )
     return () => {
       port.onMessage.removeListener(listener)
       port.disconnect()
@@ -62,9 +77,9 @@ function ChatGPTQuery(props: Props) {
     }
   }, [error])
 
-  useEffect(() => {
+  /*useEffect(() => {
     shouldShowRatingTip().then((show) => setShowTip(show))
-  }, [])
+  }, [])*/
 
   const openOptionsPage = useCallback(() => {
     Browser.runtime.sendMessage({ type: 'OPEN_OPTIONS_PAGE' })
@@ -74,7 +89,7 @@ function ChatGPTQuery(props: Props) {
     return (
       <div className="markdown-body gpt-markdown" id="gpt-answer" dir="auto">
         <div className="gpt-header">
-          <span className="font-bold">ChatGPT</span>
+          <span className="font-bold">ChatGPT Online</span>
           <span className="cursor-pointer leading-[0]" onClick={openOptionsPage}>
             <GearIcon size={14} />
           </span>
@@ -87,7 +102,8 @@ function ChatGPTQuery(props: Props) {
         <ReactMarkdown rehypePlugins={[[rehypeHighlight, { detect: true }]]}>
           {answer.text}
         </ReactMarkdown>
-        {done && showTip && (
+        {/* TODO: make rating*/}
+        {/*{done && showTip && (
           <p className="italic mt-2">
             Enjoy this extension? Give us a 5-star rating at{' '}
             <a
@@ -98,7 +114,7 @@ function ChatGPTQuery(props: Props) {
               Chrome Web Store
             </a>
           </p>
-        )}
+        )}*/}
       </div>
     )
   }
@@ -143,6 +159,14 @@ function ChatGPTQuery(props: Props) {
   }
 
   return <p className="text-[#b6b8ba] animate-pulse">Waiting for ChatGPT response...</p>
+}
+
+function getCurrentDate() {
+  const date = new Date()
+  const day = date.getDate()
+  const month = date.getMonth() + 1
+  const year = date.getFullYear()
+  return `${day}/${month}/${year}`
 }
 
 export default memo(ChatGPTQuery)

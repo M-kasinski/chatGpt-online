@@ -1,11 +1,11 @@
-# <img src="./src/logo.png" alt="logo" width="30"/> ChatGPT for Qwant
+# <img src="./src/logo.png" alt="logo" width="40"/> ChatGPT Online for Google
 
 
-A browser extension to display ChatGPT response alongside Qwant (and other search engines) results
+A browser extension to display ChatGPT response alongside Google with connected results
 
-[Install from Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-for-qwant/fmackbdncigkggigfkmiikcpobkeijaf)
+<!-- [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-for-qwant/fmackbdncigkggigfkmiikcpobkeijaf)
 
-[Install from Mozilla Add-on Store](https://addons.mozilla.org/firefox/addon/chatgpt-for-qwant/)
+[Install from Mozilla Add-on Store](https://addons.mozilla.org/firefox/addon/chatgpt-for-qwant/) -->
 
 ## Screenshot
 
@@ -13,6 +13,7 @@ A browser extension to display ChatGPT response alongside Qwant (and other searc
 
 ## Features
 
+- web-connected (YES ChatGpt is really online)
 - Supports all popular search engines
 - Supports the official OpenAI API
 - Supports ChatGPT Plus

@@ -7,6 +7,11 @@ export enum TriggerMode {
   Manually = 'manually',
 }
 
+export enum Connect {
+  Online = 'online',
+  Offline = 'offline',
+}
+
 export const TRIGGER_MODE_TEXT = {
   [TriggerMode.Always]: { title: 'Always', desc: 'ChatGPT is queried on every search' },
   [TriggerMode.QuestionMark]: {
@@ -41,6 +46,7 @@ const userConfigWithDefaultValue = {
   triggerMode: TriggerMode.Always,
   theme: Theme.Auto,
   language: Language.Auto,
+  mode: Connect.Online,
 }
 
 export type UserConfig = typeof userConfigWithDefaultValue

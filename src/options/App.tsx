@@ -3,6 +3,7 @@ import { capitalize } from 'lodash-es'
 import { useCallback, useEffect, useMemo, useState } from 'preact/hooks'
 import '../base.css'
 import {
+  Connect,
   getUserConfig,
   Language,
   Theme,
@@ -18,12 +19,14 @@ import ProviderSelect from './ProviderSelect'
 function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => void }) {
   const [triggerMode, setTriggerMode] = useState<TriggerMode>(TriggerMode.Always)
   const [language, setLanguage] = useState<Language>(Language.Auto)
+  const [webConnected, setWebConnected] = useState(Connect.Online)
   const { setToast } = useToasts()
 
   useEffect(() => {
     getUserConfig().then((config) => {
       setTriggerMode(config.triggerMode)
       setLanguage(config.language)
+      setWebConnected(config.mode)
     })
   }, [])
 
@@ -45,6 +48,15 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
     [props, setToast],
   )
 
+  const onOnlineChange = useCallback(
+    (mode: Connect) => {
+      setWebConnected(mode)
+      updateUserConfig({ mode })
+      setToast({ text: 'Changes saved', type: 'success' })
+    },
+    [props, setToast],
+  )
+
   const onLanguageChange = useCallback(
     (language: Language) => {
       updateUserConfig({ language })
@@ -58,7 +70,9 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
       <nav className="flex flex-row justify-between items-center mt-5 px-2">
         <div className="flex flex-row items-center gap-2">
           <img src={logo} alt={'logo'} className="w-10 h-10 rounded-lg" />
-          <span className="font-semibold">ChatGPT for Qwant (v{getExtensionVersion()})</span>
+          <span className="font-semibold">
+            ChatGPT Online for Google (v{getExtensionVersion()})
+          </span>
         </div>
         <div className="flex flex-row gap-3">
           <a
@@ -79,6 +93,18 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
       </nav>
       <main className="w-[500px] mx-auto mt-14">
         <Text h2>Options</Text>
+        <Text h3 className="mt-5">
+          Connected ChatGPT to the web
+        </Text>
+        <Radio.Group value={webConnected} onChange={(val) => onOnlineChange(val as Connect)} useRow>
+          {Object.entries(Connect).map(([k, v]) => {
+            return (
+              <Radio key={v} value={v}>
+                {k}
+              </Radio>
+            )
+          })}
+        </Radio.Group>
         <Text h3 className="mt-5">
           Trigger Mode
         </Text>
