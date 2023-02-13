@@ -17,6 +17,7 @@ interface Props {
   // eslint-disable-next-line no-unused-vars
   onStatusChange?: (status: QueryStatus) => void
   webResults: string
+  lang: string
 }
 
 function ChatGPTQuery(props: Props) {
@@ -53,6 +54,7 @@ function ChatGPTQuery(props: Props) {
               query: props.question,
               current_date: getCurrentDate(),
               web_results: props.webResults,
+              lang: props.lang,
             }),
           }
         : { question: props.question },

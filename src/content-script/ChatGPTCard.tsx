@@ -10,6 +10,7 @@ interface Props {
   triggerMode: TriggerMode
   // eslint-disable-next-line no-unused-vars
   onStatusChange?: (status: QueryStatus) => void
+  lang: string
 }
 
 function ChatGPTCard(props: Props) {
@@ -18,6 +19,7 @@ function ChatGPTCard(props: Props) {
   if (props.triggerMode === TriggerMode.Always) {
     return (
       <ChatGPTQuery
+        lang={props.lang}
         question={props.question}
         onStatusChange={props.onStatusChange}
         webResults={props.webResults}
@@ -28,6 +30,7 @@ function ChatGPTCard(props: Props) {
     if (endsWithQuestionMark(props.question.trim())) {
       return (
         <ChatGPTQuery
+          lang={props.lang}
           question={props.question}
           onStatusChange={props.onStatusChange}
           webResults={props.webResults}
@@ -44,6 +47,7 @@ function ChatGPTCard(props: Props) {
   if (triggered) {
     return (
       <ChatGPTQuery
+        lang={props.lang}
         question={props.question}
         onStatusChange={props.onStatusChange}
         webResults={props.webResults}
