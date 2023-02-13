@@ -44,6 +44,7 @@ async function mount(
       question={question}
       triggerMode={userConfig.triggerMode || 'always'}
       webResults={userConfig.mode === Connect.Online ? results.organicResults : Connect.Offline}
+      lang={userConfig.language}
       /*domains={userConfig.mode === Connect.Online && results.domains}*/
     />,
     container,
