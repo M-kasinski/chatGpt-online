@@ -1,5 +1,5 @@
 {
-  "name": "chat-gpt-qwant-extension",
+  "name": "chat-gpt-online-for-google",
   "author": "Mickael Kasinski",
   "scripts": {
     "build": "node build.mjs",
@@ -59,8 +59,7 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,mjs}": [
-      "npx prettier --write",
-      "npx eslint --fix"
+      "npx prettier --write"
     ]
   }
 }

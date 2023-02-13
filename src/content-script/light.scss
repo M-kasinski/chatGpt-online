@@ -6,6 +6,24 @@
     background-color: white;
   }
 
+  .box-links{
+    display: flex;
+  }
+
+  .linksOnline {
+    margin-right: 4px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 0px 8px;
+    font-weight: 500;
+    color: #123bb6;
+    background: #d1dbfa;
+  }
+
 pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}/*!
   Theme: GitHub
   Description: Light theme as seen on github.com

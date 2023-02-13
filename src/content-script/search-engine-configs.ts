@@ -6,6 +6,11 @@ export interface SearchEngine {
 }
 
 export const config: Record<string, SearchEngine> = {
+  google: {
+    inputQuery: ["input[name='q']"],
+    sidebarContainerQuery: ['#rhs'],
+    appendContainerQuery: ['#rcnt'],
+  },
   qwant: {
     inputQuery: ["[name='q']"],
     sidebarContainerQuery: ['.is-sidebar'],
