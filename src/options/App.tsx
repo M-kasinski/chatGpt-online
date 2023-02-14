@@ -76,17 +76,13 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
         </div>
         <div className="flex flex-row gap-3">
           <a
-            href="https://github.com/M-kasinski/chat-gpt-qwant-extension/issues"
+            href="https://github.com/M-kasinski/chatGpt-online/issues"
             target="_blank"
             rel="noreferrer"
           >
             Feedback
           </a>
-          <a
-            href="https://github.com/M-kasinski/chat-gpt-qwant-extension"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://github.com/M-kasinski/chatGpt-online" target="_blank" rel="noreferrer">
             Source code
           </a>
         </div>
