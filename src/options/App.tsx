@@ -94,7 +94,7 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
       <main className="w-[500px] mx-auto mt-14">
         <Text h2>Options</Text>
         <Text h3 className="mt-5">
-          Connected ChatGPT to the web
+          Connected ChatGPT to the web (beta)
         </Text>
         <Radio.Group value={webConnected} onChange={(val) => onOnlineChange(val as Connect)} useRow>
           {Object.entries(Connect).map(([k, v]) => {
