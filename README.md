@@ -7,7 +7,7 @@ A browser extension to display ChatGPT response alongside Google with connected 
 
 [Install from Mozilla Add-on Store](https://addons.mozilla.org/en-US/firefox/addon/chatgpt-online-for-google/)
 
-Supported Search Engines
+## Supported Search Engines
 Google, Qwant, Baidu, Bing, DuckDuckGo, Brave, Yahoo, Naver, Yandex, Kagi, Searx
 
 ## Screenshot
@@ -20,6 +20,7 @@ Google, Qwant, Baidu, Bing, DuckDuckGo, Brave, Yahoo, Naver, Yandex, Kagi, Searx
 - Supports the official OpenAI API (add new model ChatGPT-3.5-turbo !!!)
 - Supports ChatGPT Plus
 - web-connected (Chat gpt online is only connected to Google)
+- choose Mainline in option to use just chatgpt in google
 - Supports all popular search engines (Google, Qwant, Duckduckgo, yahoo, baidu ....)
 - Markdown rendering
 - Code highlights
