@@ -13,10 +13,11 @@ A browser extension to display ChatGPT response alongside Google with connected 
 
 ## Features
 
-- web-connected (YES ChatGpt is really online)
-- Supports all popular search engines
-- Supports the official OpenAI API
+- Select your number of web results to use for answers 
+- Supports the official OpenAI API (add new model ChatGPT-3.5-turbo !!!)
 - Supports ChatGPT Plus
+- web-connected (Chat gpt online is only connected to Google)
+- Supports all popular search engines (Google, Qwant, Duckduckgo, yahoo, baidu ....)
 - Markdown rendering
 - Code highlights
 - Dark mode
