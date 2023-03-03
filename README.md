@@ -3,9 +3,12 @@
 
 A browser extension to display ChatGPT response alongside Google with connected results
 
-<!-- [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-for-qwant/fmackbdncigkggigfkmiikcpobkeijaf)
+[Install from Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-online-for-google/llkfghafhndbplcfpcbnnkncbgmpjphf)
 
-[Install from Mozilla Add-on Store](https://addons.mozilla.org/firefox/addon/chatgpt-for-qwant/) -->
+[Install from Mozilla Add-on Store](https://addons.mozilla.org/en-US/firefox/addon/chatgpt-online-for-google/)
+
+Supported Search Engines
+Google, Qwant, Baidu, Bing, DuckDuckGo, Brave, Yahoo, Naver, Yandex, Kagi, Searx
 
 ## Screenshot
 
