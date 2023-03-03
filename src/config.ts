@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { defaults } from 'lodash-es'
 import Browser from 'webextension-polyfill'
 
@@ -30,6 +31,19 @@ export enum Theme {
   Dark = 'dark',
 }
 
+export enum NumberResults {
+  one = '1',
+  two = '2',
+  three = '3',
+  four = '4',
+  five = '5',
+  six = '6',
+  seven = '7',
+  eight = '8',
+  nine = '9',
+  ten = '10',
+}
+
 export enum Language {
   Auto = 'auto',
   English = 'english',
@@ -47,6 +61,7 @@ const userConfigWithDefaultValue = {
   theme: Theme.Auto,
   language: Language.Auto,
   mode: Connect.Online,
+  webResults: NumberResults.three,
 }
 
 export type UserConfig = typeof userConfigWithDefaultValue

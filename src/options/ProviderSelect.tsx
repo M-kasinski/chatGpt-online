@@ -1,7 +1,6 @@
 import { Button, Input, Select, Spinner, Tabs, useInput, useToasts } from '@geist-ui/core'
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
-import { fetchExtensionConfigs } from '../api'
 import { getProviderConfigs, ProviderConfigs, ProviderType, saveProviderConfigs } from '../config'
 
 interface ConfigProps {
@@ -10,15 +9,19 @@ interface ConfigProps {
 }
 
 async function loadModels(): Promise<string[]> {
-  const configs = await fetchExtensionConfigs()
-  return configs.openai_model_names
+  return ['gpt-3.5-turbo', 'text-davinci-003']
 }
 
 const ConfigPanel: FC<ConfigProps> = ({ config, models }) => {
+  console.log(config, models)
   const [tab, setTab] = useState<ProviderType>(config.provider)
   const { bindings: apiKeyBindings } = useInput(config.configs[ProviderType.GPT3]?.apiKey ?? '')
   const [model, setModel] = useState(config.configs[ProviderType.GPT3]?.model ?? models[0])
   const { setToast } = useToasts()
+
+  useEffect(() => {
+    console.log(model)
+  }, [model])
 
   const save = useCallback(async () => {
     if (tab === ProviderType.GPT3) {
@@ -92,6 +95,7 @@ function ProviderSelect() {
     const [config, models] = await Promise.all([getProviderConfigs(), loadModels()])
     return { config, models }
   })
+
   if (query.isLoading) {
     return <Spinner />
   }
