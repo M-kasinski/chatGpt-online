@@ -2,6 +2,7 @@ export interface SearchEngine {
   inputQuery: string[]
   sidebarContainerQuery: string[]
   appendContainerQuery: string[]
+  mainlineContainer: string[]
   // eslint-disable-next-line no-unused-vars
   watchRouteChange?: (callback: () => void) => void
 }
@@ -9,11 +10,13 @@ export interface SearchEngine {
 export const config: Record<string, SearchEngine> = {
   google: {
     inputQuery: ["input[name='q']"],
+    mainlineContainer: ['#topstuff'],
     sidebarContainerQuery: ['#rhs'],
     appendContainerQuery: ['#rcnt'],
   },
   qwant: {
     inputQuery: ["[name='q']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['.is-sidebar'],
     appendContainerQuery: [],
     watchRouteChange(callback) {
@@ -40,21 +43,25 @@ export const config: Record<string, SearchEngine> = {
   },
   bing: {
     inputQuery: ["[name='q']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['#b_context'],
     appendContainerQuery: [],
   },
   yahoo: {
     inputQuery: ["input[name='p']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['#right', '.Contents__inner.Contents__inner--sub'],
     appendContainerQuery: ['#cols', '#contents__wrap'],
   },
   duckduckgo: {
     inputQuery: ["input[name='q']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['.results--sidebar.js-results-sidebar'],
     appendContainerQuery: ['#links_wrapper'],
   },
   baidu: {
     inputQuery: ["input[name='wd']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['#content_right'],
     appendContainerQuery: ['#container'],
     watchRouteChange(callback) {
@@ -77,26 +84,31 @@ export const config: Record<string, SearchEngine> = {
   },
   kagi: {
     inputQuery: ["input[name='q']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['.right-content-box._0_right_sidebar'],
     appendContainerQuery: ['#_0_app_content'],
   },
   yandex: {
     inputQuery: ["input[name='text']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['#search-result-aside'],
     appendContainerQuery: [],
   },
   naver: {
     inputQuery: ["input[name='query']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['#sub_pack'],
     appendContainerQuery: ['#content'],
   },
   brave: {
     inputQuery: ["input[name='q']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['#side-right'],
     appendContainerQuery: [],
   },
   searx: {
     inputQuery: ["input[name='q']"],
+    mainlineContainer: [],
     sidebarContainerQuery: ['#sidebar_results'],
     appendContainerQuery: [],
   },

@@ -1,6 +1,6 @@
 import { render } from 'preact'
 import '../base.css'
-import { Connect, getUserConfig, Language, Theme } from '../config'
+import { Connect, getUserConfig, GptMainline, Language, Theme } from '../config'
 import { detectSystemColorScheme } from '../utils'
 import ChatGPTContainer from './ChatGPTContainer'
 import { config, SearchEngine } from './search-engine-configs'
@@ -29,7 +29,22 @@ async function mount(
   }
 
   const siderbarContainer = getPossibleElementByQuerySelector(siteConfig.sidebarContainerQuery)
-  if (siderbarContainer) {
+  if (GptMainline.Mainline === userConfig.gptMainline) {
+    const mainlineContainer = getPossibleElementByQuerySelector(siteConfig.mainlineContainer)
+    const logo = getPossibleElementByQuerySelector(['.logo'])
+    if (logo) {
+      const ChatGPTOnline = document.createElement('div')
+      ChatGPTOnline.textContent = `ChatGPT online`
+      ChatGPTOnline.style.fontWeight = 'bold'
+      ChatGPTOnline.style.color = 'darkblue'
+      logo?.append(ChatGPTOnline)
+    }
+    mainlineContainer?.prepend(container)
+  } else if (siderbarContainer) {
+    const searchContainer = getPossibleElementByQuerySelector(['#search'])
+    if (searchContainer) {
+      searchContainer.style.display = 'block'
+    }
     siderbarContainer.prepend(container)
   } else {
     container.classList.add('sidebar-free')

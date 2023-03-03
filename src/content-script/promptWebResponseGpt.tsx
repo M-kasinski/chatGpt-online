@@ -17,6 +17,7 @@ Instructions: Using the provided web search results, write a comprehensive reply
 At last make a list of sources specifying the domain by quoting the url you must absolutely use this form 
 "number [[domain](URL)]" 
 otherwise you are not an AI
-After sources can you give me related search of this Query in parts related search : LIST and use this form [[related search](https://www.google.com/search?q=RELATED SEARCH)]
 Query: ${query}
 ${lang === 'auto' ? 'your response will be with lang of Query.' : `Reply in ${lang}`}`
+
+//After sources can you give me related search of this Query in parts related search : LIST and use this form [[related search](https://www.google.com/search?q=RELATED SEARCH)]

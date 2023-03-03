@@ -13,6 +13,11 @@ export enum Connect {
   Offline = 'offline',
 }
 
+export enum GptMainline {
+  Mainline = 'mainline',
+  Sidebar = 'sidebar',
+}
+
 export const TRIGGER_MODE_TEXT = {
   [TriggerMode.Always]: { title: 'Always', desc: 'ChatGPT is queried on every search' },
   [TriggerMode.QuestionMark]: {
@@ -62,6 +67,7 @@ const userConfigWithDefaultValue = {
   language: Language.Auto,
   mode: Connect.Online,
   webResults: NumberResults.three,
+  gptMainline: GptMainline.Sidebar,
 }
 
 export type UserConfig = typeof userConfigWithDefaultValue

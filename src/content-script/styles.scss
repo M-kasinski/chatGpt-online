@@ -1,6 +1,10 @@
 @import 'light.scss';
 @import 'dark.scss';
 
+#search{
+  display: none;
+}
+
 .chat-gpt-container {
   margin-bottom: 30px;
   flex-basis: 0;

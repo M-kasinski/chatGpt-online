@@ -5,6 +5,7 @@ import '../base.css'
 import {
   Connect,
   getUserConfig,
+  GptMainline,
   Language,
   NumberResults,
   Theme,
@@ -21,6 +22,7 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
   const [triggerMode, setTriggerMode] = useState<TriggerMode>(TriggerMode.Always)
   const [language, setLanguage] = useState<Language>(Language.Auto)
   const [webConnected, setWebConnected] = useState(Connect.Online)
+  const [mailine, setMainline] = useState(GptMainline.Sidebar)
   const [numberResults, setNumberResults] = useState(NumberResults.three)
   const { setToast } = useToasts()
 
@@ -30,6 +32,7 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
       setLanguage(config.language)
       setWebConnected(config.mode)
       setNumberResults(config.webResults)
+      setMainline(config.gptMainline)
     })
   }, [])
 
@@ -55,6 +58,15 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
     (mode: Connect) => {
       setWebConnected(mode)
       updateUserConfig({ mode })
+      setToast({ text: 'Changes saved', type: 'success' })
+    },
+    [setToast],
+  )
+
+  const onMailineChange = useCallback(
+    (gptMainline: GptMainline) => {
+      setMainline(gptMainline)
+      updateUserConfig({ gptMainline })
       setToast({ text: 'Changes saved', type: 'success' })
     },
     [setToast],
@@ -101,7 +113,6 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
       </nav>
       <div className="flex flex-row">
         <main className="w-[500px] mx-auto mt-14 mr-5">
-          <Text h2>Options</Text>
           <Text h3 className="mt-5">
             Connected ChatGPT to the web (beta)
           </Text>
@@ -137,7 +148,22 @@ function OptionsPage(props: { theme: Theme; onThemeChange: (theme: Theme) => voi
               </Select>
             </>
           )}
-
+          <Text h3 className="mt-5">
+            Chat GPT online in Google mainline
+          </Text>
+          <Radio.Group
+            value={mailine}
+            onChange={(val) => onMailineChange(val as GptMainline)}
+            useRow
+          >
+            {Object.entries(GptMainline).map(([k, v]) => {
+              return (
+                <Radio key={v} value={v}>
+                  {k}
+                </Radio>
+              )
+            })}
+          </Radio.Group>
           <Text h3 className="mt-5">
             Trigger Mode
           </Text>
