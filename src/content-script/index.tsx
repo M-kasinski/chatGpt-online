@@ -43,7 +43,11 @@ async function mount(
     <ChatGPTContainer
       question={question}
       triggerMode={userConfig.triggerMode || 'always'}
-      webResults={userConfig.mode === Connect.Online ? results.organicResults : Connect.Offline}
+      webResults={
+        userConfig.mode === Connect.Online && results.organicResults !== ''
+          ? results.organicResults
+          : Connect.Offline
+      }
       lang={userConfig.language}
       /*domains={userConfig.mode === Connect.Online && results.domains}*/
     />,
@@ -55,7 +59,7 @@ const siteRegex = new RegExp(Object.keys(config).join('|'))
 const siteName = location.hostname.match(siteRegex)![0]
 const siteConfig = config[siteName]
 
-const GoogleOrganicResults = () => {
+const GoogleOrganicResults = (numberResults: string) => {
   const links: string | any[] = []
   const titles: string | any[] = []
   const snippets: string | any[] = []
@@ -68,13 +72,16 @@ const GoogleOrganicResults = () => {
     titles[i] = el.textContent
   })
 
+  // eslint-disable-next-line radix
+  const IntNumberResult = parseInt(numberResults)
+
   document.querySelectorAll('span.aCOpRe > span, div.MUxGbd.yDYNvb').forEach((el, i) => {
     snippets[i] = el.textContent?.trim()
   })
 
   const domains = []
   const result = []
-  for (let i = 0; i < 3 && i < links.length; i++) {
+  for (let i = 0; i < IntNumberResult && i < links.length; i++) {
     result[i] = {
       title: titles[i],
       url: links[i],
@@ -105,7 +112,7 @@ async function run() {
         : `${searchInput.value}(in ${userConfig.language})`
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    mount(searchValueWithLanguageOption, siteConfig, GoogleOrganicResults())
+    mount(searchValueWithLanguageOption, siteConfig, GoogleOrganicResults(userConfig.webResults))
   }
 }
 
